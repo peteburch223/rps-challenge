@@ -19,6 +19,10 @@ class Rps < Sinatra::Base
     Game.wait? ? redirect('/login_wait') : redirect('/play')
   end
 
+  get '/error' do
+    
+  end
+
   get '/login_wait' do
     @login = true
     erb(:wait)

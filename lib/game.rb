@@ -22,20 +22,20 @@ class Game
     false
   end
 
-  def self.create_ai(player1_name:, player_class:Human, ai_class:Ai)
-    @player_class = player_class
-    @number_of_players = 1
-    player1 = player_class.new(name:player1_name)
-    player2 = ai_class.new
-    @instance = self.new(player1:player1, player2:player2)
-  end
-
-  def self.create_human(player1_name:, player_class:Human)
-    @player_class = player_class
-    @number_of_players = 2
-    player1 = @player_class.new(name:player1_name)
-    @instance = self.new(player1:player1)
-  end
+  # def self.create_ai(player1_name:, player_class:Human, ai_class:Ai)
+  #   @player_class = player_class
+  #   @number_of_players = 1
+  #   player1 = player_class.new(name:player1_name)
+  #   player2 = ai_class.new
+  #   @instance = self.new(player1:player1, player2:player2)
+  # end
+  #
+  # def self.create_human(player1_name:, player_class:Human)
+  #   @player_class = player_class
+  #   @number_of_players = 2
+  #   player1 = @player_class.new(name:player1_name)
+  #   @instance = self.new(player1:player1)
+  # end
 
   def self.wait?
     @wait
