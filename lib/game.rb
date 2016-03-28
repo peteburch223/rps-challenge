@@ -1,17 +1,21 @@
 require_relative 'round'
 
-
 class Game
 
   attr_reader :players
 
-  def self.create(round_class=Round)
-    @game = self.new
+  def self.create(round_class: Round, num_players: 1)
+    @instance ||= self.new
     @round_class = round_class
+    @num_players = num_players
   end
 
-  def self.game
-    @game
+  def self.instance
+    @instance
+  end
+
+  def self.num_players
+    @num_players
   end
 
   def self.round_class
@@ -29,5 +33,4 @@ class Game
   def new_round
     self.class.round_class.new(player1: players.first, player2: players.last)
   end
-
 end

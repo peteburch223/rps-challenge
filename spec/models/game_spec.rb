@@ -18,14 +18,18 @@ describe Game do
   context 'class methods' do
     describe '#create' do
       it 'stores the game in class instance variable @game' do
-        game_class.create(round_class)
-        expect(game_class.game).to be_instance_of described_class
+        game_class.create(round_class: round_class)
+        expect(game_class.instance).to be_instance_of described_class
       end
 
       it 'stores round_class in class instance variable @round_class' do
-        game_class.create(round_class)
+        game_class.create(round_class: round_class)
         expect(game_class.round_class).to eq round_class
+      end
 
+      it 'stores number_of_players in class instance variable @num_players' do
+        game_class.create(round_class: round_class, num_players: 2)
+        expect(game_class.num_players).to eq 2
       end
 
     end
@@ -49,10 +53,10 @@ describe Game do
     describe '#new_round' do
       it 'creates a new round object' do
         expect(round_class).to receive(:new).with(player1: player1, player2: player2)
-        game_class.create(round_class)
-        game_class.game.add_player(player1)
-        game_class.game.add_player(player2)
-        game_class.game.new_round
+        game_class.create(round_class: round_class, num_players: 2)
+        game_class.instance.add_player(player1)
+        game_class.instance.add_player(player2)
+        game_class.instance.new_round
 
       end
     end

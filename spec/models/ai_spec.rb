@@ -8,6 +8,7 @@ describe Ai do
 
   describe '#initialize' do
     it { expect(ai.name).to eq name}
+    it { expect(ai.score).to eq 0}
   end
 
   before do
@@ -20,5 +21,9 @@ describe Ai do
     it { ai.play; expect(ai.move).to eq moves[4] }
     it { ai.play; ai.play; expect(ai.move).to eq moves[4] }
     it { ai.play; ai.play; ai.play; expect(ai.move).to eq moves[0] }
+  end
+
+  describe '#win' do
+    it { expect{ai.win}.to change{ai.score}.by 1}
   end
 end

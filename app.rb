@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'sinatra'
 require './lib/game'
+require './lib/human'
+require './lib/ai'
 
 
 class Rps < Sinatra::Base
@@ -12,15 +14,19 @@ class Rps < Sinatra::Base
   end
 
   post '/login' do
+    redirect '/error' if !Game.num_players.nil? &&
+      Game.num_players.nil? != params[:number_of_players].to_i
+    Game.create(num_players: params[:number_of_players].to_i)
     session[:me] = params[:player_name]
-    players = params[:number_of_players].to_i
-    redirect '/error' if Game.create(player_name: params[:player_name],
-                                     players: players)
-    Game.wait? ? redirect('/login_wait') : redirect('/play')
+    Game.instance.add_player(Player.new(params[:player_name]))
+    Game.instance.add_player(Ai.new('Computer')) if params[:number_of_players].to_i == 1
+
+
+    Game.instance.players.count == 2 ? redirect('/login_wait') : redirect('/play')
   end
 
   get '/error' do
-    
+
   end
 
   get '/login_wait' do
