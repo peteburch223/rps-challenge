@@ -1,20 +1,17 @@
 require_relative 'constants'
-require_relative 'player'
 
 class Ai
 
   include Constants
-  include Player
 
-  NAME = 'Computer'
+  attr_reader :name, :move
 
-  def initialize
-    setup(NAME)
+  def initialize(name: )
+      @name = name
   end
 
   def play(*)
     moves = Constants::MOVES.keys
     @move = moves[Kernel.rand(moves.count)]
-    played!
   end
 end

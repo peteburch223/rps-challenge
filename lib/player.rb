@@ -1,6 +1,10 @@
 module Player
 
-  attr_reader :name, :move, :wins
+  attr_reader :name, :move, :wins, :opponent
+
+  def set_opponent(player)
+    @opponent = player
+  end
 
   def win!
     @wins += 1
@@ -24,6 +28,7 @@ module Player
   end
 
   def win?
+    moves[@move].include?(opponent.move)
     @win
   end
 

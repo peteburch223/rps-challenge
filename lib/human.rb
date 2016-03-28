@@ -1,15 +1,12 @@
-require_relative 'player'
-
 class Human
 
-  include Player
+  attr_reader :name, :move
 
   def initialize(name:)
-    setup(name)
+    @name = name
   end
 
   def play(move)
     @move = move
-    played!
   end
 end

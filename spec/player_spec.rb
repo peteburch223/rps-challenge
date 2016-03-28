@@ -48,4 +48,8 @@ describe PlayerModule do
     it { expect(player.wins).to eq 0 }
     it { expect(player.win?).to eq false }
   end
+
+  describe "#set_opponent" do
+    it { expect(player.opponent).to be_instance_of(described_class) }  
+  end
 end

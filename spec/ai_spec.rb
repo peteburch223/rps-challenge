@@ -1,16 +1,13 @@
-RSpec.configure do |c|
-  c.filter_run_excluding :broken => true
-end
-
 require 'ai'
 
 describe Ai do
 
-  subject(:ai){ described_class.new }
+  let(:name){ "Computer" }
+  subject(:ai){ described_class.new(name: name) }
   let(:moves){Constants::MOVES.keys}
 
   describe '#initialize' do
-    it { expect(ai.name).to eq Ai::NAME}
+    it { expect(ai.name).to eq name}
   end
 
   before do
@@ -23,8 +20,5 @@ describe Ai do
     it { ai.play; expect(ai.move).to eq moves[4] }
     it { ai.play; ai.play; expect(ai.move).to eq moves[4] }
     it { ai.play; ai.play; ai.play; expect(ai.move).to eq moves[0] }
-    it { expect(ai).to be_played }
-
   end
-
 end
